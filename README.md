@@ -25,6 +25,15 @@
    8. **-p 3306:3306** : mysql run on port 3306
       - I can have 2 Container listen on the same port as long as I bind them from 2 different port from the Host OS
    9. **--network your-network**: If I not start container from Docker-Compose i need to network the connect container
-      
+2. **Set Variable Env in Local or Server depend on where My App running** : If My app run on a server i have to set Variable ENV in my Server
+
+ ## Start GUI Mysql Container (phpmyadmin)
+ 1. **Run phpmyadmin as the Docker container using official Docker image**: `docker run -d --network mysql-network --name phpmyadmin --link mysql:db -p 8080:80 phpmyadmin`
+    1. **--name phpmyadmin** : Create name for phpmyadmin container
+    2. **--link mysql:db**: Link to mysql database by mysql name
+    3. **-p 8080:80**: create port
+    4. **phpmyadmin**: phpmyadmin image
+    5. **--network mysql-network**: connect to mysql network
+ 2.      
    
 
