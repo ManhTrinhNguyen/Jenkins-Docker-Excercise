@@ -34,6 +34,7 @@
     3. **-p 8080:80**: create port
     4. **phpmyadmin**: phpmyadmin image
     5. **--network mysql-network**: connect to mysql network
- 2.      
-   
+    6. Using mysql username and password to access Bcs the container already link to mysql
+
+##  Use docker-compose for Mysql and Phpmyadmin
 
