@@ -57,5 +57,30 @@
       1. **db-name**: mysql
          - driver: local **This is a additional infomation for Docker to create that physical storage on the local file system**      
 ```
+version: '3'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=java-app 
 
+    volumes:
+      - mysql-data:/var/lib/mysql 
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql 
+      - PMA_PORT=3306
+volumes:
+  mysql-data:
+    driver: local
 ```
