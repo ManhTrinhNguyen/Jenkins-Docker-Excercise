@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   java-app:
       image: java-app:1.1
@@ -11,6 +11,7 @@ services:
         - DB_NAME=${DB_NAME}
       depends_on:
         - mysql
+
   mysql:
     image: mysql
     ports:
@@ -22,6 +23,13 @@ services:
       - MYSQL_DATABASE=${DB_NAME}
     volumes:
       - mysql-data:/var/lib/mysql 
+    
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
 
   phpmyadmin:
     image: phpmyadmin
