@@ -114,3 +114,48 @@ WORKDIR /home/java-app
 CMD ["java", "-jar", "docker-exercises-project-1.0-SNAPSHOT.jar"]
 ```
 ## Add Java App Image to Docker-Compose
+```
+version: '3'
+services:
+  java-app:
+      image: java-app:1.1
+      ports:
+        - 8080:8080
+      environment:
+        - DB_USER=${DB_USER}
+        - DB_PWD=${DB_PWD}
+        - DB_SERVER=${DB_SERVER}
+        - DB_NAME=${DB_NAME}
+      depends_on:
+        - mysql
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PWD}
+      - MYSQL_DATABASE=${DB_NAME}
+    volumes:
+      - mysql-data:/var/lib/mysql 
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${PMA_HOST}
+      - PMA_PORT=${PMA_PORT}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    container_name: phpmyadmin
+    depends_on: 
+        - mysql
+volumes:
+  mysql-data:
+    driver: local
+```
+- **Security Practice** : I put everything in ${} `${DB_PWD}` .... etc . When i need to run this Docker-compose I will configure in the specific ENV of the Server . No one can see my DB password via my docker-compose 
+ 
