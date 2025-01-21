@@ -115,7 +115,7 @@ CMD ["java", "-jar", "docker-exercises-project-1.0-SNAPSHOT.jar"]
 ```
 ## Add Java App Image to Docker-Compose
 ```
-version: '3'
+version: '3.8'
 services:
   java-app:
       image: java-app:1.1
@@ -128,6 +128,7 @@ services:
         - DB_NAME=${DB_NAME}
       depends_on:
         - mysql
+
   mysql:
     image: mysql
     ports:
@@ -139,6 +140,13 @@ services:
       - MYSQL_DATABASE=${DB_NAME}
     volumes:
       - mysql-data:/var/lib/mysql 
+    
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
 
   phpmyadmin:
     image: phpmyadmin
@@ -158,4 +166,7 @@ volumes:
     driver: local
 ```
 - **Security Practice** : I put everything in ${} `${DB_PWD}` .... etc . When i need to run this Docker-compose I will configure in the specific ENV of the Server . No one can see my DB password via my docker-compose 
- 
+- **Heathy check service** : `test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]`
+  - Ensure Docker check health of Mysql Container 
+  - If the health check fails, the service is marked as unhealthy, and dependent services wait until it becomes healthy.
+  
