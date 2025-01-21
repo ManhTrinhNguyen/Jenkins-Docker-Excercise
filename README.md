@@ -169,4 +169,9 @@ volumes:
 - **Heathy check service** : `test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]`
   - Ensure Docker check health of Mysql Container 
   - If the health check fails, the service is marked as unhealthy, and dependent services wait until it becomes healthy.
-  
+    - Runs the `mysqladmin ping` command inside the container to check if the MySQL server is running and reachable.
+    - `h "localhost"` specifies the target hostname, which is the MySQL container itself.
+    - If the command returns mysqld is alive, the service is considered healthy.
+    - `interval` : Specific how often Docker check service health
+    - `timeout`: Specifies the maximum time the health check can take before it's considered failed (5 seconds).
+    - `retries: 5`: Specifies the number of times the health check can fail before the container is marked as unhealthy. 
