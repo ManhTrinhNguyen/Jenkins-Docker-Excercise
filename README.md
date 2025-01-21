@@ -37,4 +37,9 @@
     6. Using mysql username and password to access Bcs the container already link to mysql
 
 ##  Use docker-compose for Mysql and Phpmyadmin
+- Instead of run a Image like this : `docker run -d -p 3306:3306 --name mysql -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secrect-password -e MYSQL_USER=my-user-name -e MYSQL_PASSWORD=my-user-password -e MYSQL_DATABASE=database-name mysql` use Docker-Compose : 
+1. **Create Docker-Compose file**: Docker-compose is create in yaml file
+2. **Version of docker compose** :Using version 3
+3. **Services Section**: Service to run (example: Mysql , Mongodb .... etc)
+4. **Image name**: 
 
