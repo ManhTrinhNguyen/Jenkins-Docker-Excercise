@@ -53,4 +53,7 @@
       2. **restart**: `restart: alway` **Because phpmyadmin need Mysql to be ready to connect . Sometime it faile bcs mysql not ready yet so if it failed just need to restart until mysql ready**
       3. **ports**: `ports: - 8080:80`
       4. **enviroment**: `enviroment : - PMA_ARBITRARY=1 - PMA_HOST=my-mysql - PMA_PORT=3306`
+4. **Volume**:
+      1. **db-name**: mysql
+         - driver: local **This is a additional infomation for Docker to create that physical storage on the local file system**      
    
