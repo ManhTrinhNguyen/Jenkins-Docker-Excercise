@@ -113,3 +113,4 @@ WORKDIR /home/java-app
 
 CMD ["java", "-jar", "docker-exercises-project-1.0-SNAPSHOT.jar"]
 ```
+## Add Java App Image to Docker-Compose
