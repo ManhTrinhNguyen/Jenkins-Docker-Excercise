@@ -37,9 +37,20 @@
     6. Using mysql username and password to access Bcs the container already link to mysql
 
 ##  Use docker-compose for Mysql and Phpmyadmin
-- Instead of run a Image like this : `docker run -d -p 3306:3306 --name mysql -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secrect-password -e MYSQL_USER=my-user-name -e MYSQL_PASSWORD=my-user-password -e MYSQL_DATABASE=database-name mysql` use Docker-Compose : 
+- **If I use docker-compose to run Mysql and Phpmyadmin I don't need to create network**
+- Instead of run Mysql like this in CLI: `docker run -d -p 3306:3306 --name mysql -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secrect-password -e MYSQL_USER=my-user-name -e MYSQL_PASSWORD=my-user-password -e MYSQL_DATABASE=database-name mysql` :
+- And instead of run phpmyadmin like this : `docker run -d --network mysql-network --name phpmyadmin --link mysql:db -p 8080:80 phpmyadmin` use docker-compose
 1. **Create Docker-Compose file**: Docker-compose is create in yaml file
 2. **Version of docker compose** :Using version 3
 3. **Services Section**: Service to run (example: Mysql , Mongodb .... etc)
-4. **Image name**: 
-
+   1. **MySql Image name**: my-mysql (I can put any name as long as I understand that is mysql)
+      1. **Image**: `image:mysql` (Actual image from Docker hub)
+      2. **ports** : `ports: - 3306:3306`
+      3. **enviroment***: `enviroment : - MYSQL_ROOT_PASSWORD=my-secrect-password, - MYSQL_USER=my-user-name, -MYSQL_PASSWORD=my-user-password`
+      4. **volumes**: - mysql-data:/var/lib/mysql
+   2. **phpmyadmin Image name** phpmyadmin (I can put any name as long as I understand that is mysql)
+      1. **Image**: `image:phpmyadmin` (Actual image from Docker hub)
+      2. **restart**: `restart: alway` **Because phpmyadmin need Mysql to be ready to connect . Sometime it faile bcs mysql not ready yet so if it failed just need to restart until mysql ready**
+      3. **ports**: `ports: - 8080:80`
+      4. **enviroment**: `enviroment : - PMA_ARBITRARY=1 - PMA_HOST=my-mysql - PMA_PORT=3306`
+   
