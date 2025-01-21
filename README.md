@@ -84,3 +84,20 @@ volumes:
   mysql-data:
     driver: local
 ```
+
+## Create Docker Image (Dockerfile)
+1. **FROM** : Image Name from Dockerhub (Base on another Image in Docker hub to create another Image)
+  - If I have Java Application I will use jdk image or other that support Java
+  - If I have Node Application I will use node image 
+  - The main point is I don't need to install jdk or node again in the server . It already install in the image
+2. **ENV** : Optional | to define your app enviroment. 
+  - It is better to create enviroment in external docker-compose file ... 
+  - If something change I don't need to recreate Image 
+3. **RUN** : Using RUN to run any linux command 
+  - `RUN mkdir -p /home/app`: /home/app will create inside of the container 
+4. **COPY** : This Copy command will execute from the Host .
+  - `COPY . /home/app`  from source in the host to target in the container
+5. **CMD** : Execute an entry point from linux command 
+  - `CMD ['java', '-jar', 'docker-exercises-project-1.0-SNAPSHOT.jar']`
+6. **WORKDIR** : set the working directory 
+  - `WORKDIR /home/app`
