@@ -46,7 +46,7 @@
    1. **MySql Image name**: my-mysql (I can put any name as long as I understand that is mysql)
       1. **Image**: `image:mysql` (Actual image from Docker hub)
       2. **ports** : `ports: - 3306:3306`
-      3. **enviroment***: `enviroment : - MYSQL_ROOT_PASSWORD=my-secrect-password, - MYSQL_USER=my-user-name, -MYSQL_PASSWORD=my-user-password`
+      3. **enviroment***: `enviroment : - MYSQL_ROOT_PASSWORD=my-secrect-password, - MYSQL_USER=my-user-name, -MYSQL_PASSWORD=my-user-password -MYSQL_DATABASE=database-name`
       4. **volumes**: - mysql-data:/var/lib/mysql
    2. **phpmyadmin Image name** phpmyadmin (I can put any name as long as I understand that is mysql)
       1. **Image**: `image:phpmyadmin` (Actual image from Docker hub)
