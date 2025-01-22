@@ -175,3 +175,19 @@ volumes:
     - `interval` : Specific how often Docker check service health
     - `timeout`: Specifies the maximum time the health check can take before it's considered failed (5 seconds).
     - `retries: 5`: Specifies the number of times the health check can fail before the container is marked as unhealthy. 
+
+## Create a Pipeline Jenkins to auto test build and push the image to Repo Manager 
+### Push Docker Image to Nexus 
+1. **Rent a Server on Digital Ocean**
+2. **Install Nexus**
+  - Create new docker-hosted Repo 
+    - In oder to start pushing Docker Image to Nexus Repo I first have to login to Nexus using a Nexus User which have access to docker-hosted Repo
+  - Create a new User for Docker Repo on nexus 
+  - Create Role for that User 
+  - Configure to connect to Nexus : 
+    - Docker client can not use Nexus endpoint to connect to the Repo bcs that endpoin is Nexus running itself . So I need to create a new port for docker-repo specificlly . 
+    - Configure Realms : When I do Docker login I have a token of authentication from Nexus Docker-Repo for client . That token will be store on my local machine /.docker/config.json
+3. **Install Jenkins**
+  - Run Jenkins as a Docker container 
+  - To have docker CLI available in Jenkin I have to get in Jenkin container and install Docker with : `curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall`
+  
