@@ -204,4 +204,13 @@ volumes:
       - **-v /var/run/docker.sock:/var/run/docker.sock**: This will mount docker CLI to Jenkins container so docker CLI will available in jenkins container 
       - **jenkins/jenkins**: Jenkins Image
   - **Install docker inside Jenkins container** :  `curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall`
+  - **Inside get inside jenkins container as root**: `chmod o=rw /var/run/docker.sock` to make other user can use docker CLI in the container
+4. **Create Pipelines to build and push Docker image to Nexus**
+  - Configure Github and Nexus Credentials on Jenkins 
+  - **Create Pipeline** 
+    - Add Jenkinsfile in the project
+    - **Configure Webhook Trigger pipeline job automatically**
+      - From pipeline Enable : `GitHub hook trigger for GITScm polling`
+      - From Github : In the Repo go to : Setting -> Webhook -> Add Webhook
+
   
