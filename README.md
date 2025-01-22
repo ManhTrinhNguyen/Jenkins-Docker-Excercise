@@ -212,5 +212,46 @@ volumes:
     - **Configure Webhook Trigger pipeline job automatically**
       - From pipeline Enable : `GitHub hook trigger for GITScm polling`
       - From Github : In the Repo go to : Setting -> Webhook -> Add Webhook
+    - **Create Jenkinsfile**:
+      ```
+        pipelines {
+          agent any
+          tools {
 
+          }
+          stages {
+            stage('Testing Java app') {
+              steps {
+                script {
+
+                }
+              }
+            }
+
+            stage ('Build Java app') {
+              steps {
+                script {
+                  
+                }
+              }
+            }
+
+            stage ('Push Java app'){
+              steps {  
+                script {
+                  
+                }
+              }
+            }
+
+            stage ('Deploy java app'){
+              steps {  
+                script {
+                  
+                }
+              }
+            }
+          }
+        }
+      ```
   
