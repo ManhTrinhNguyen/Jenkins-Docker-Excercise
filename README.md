@@ -211,7 +211,7 @@ volumes:
     - Add Jenkinsfile in the project
     - **Configure Webhook Trigger pipeline job automatically**
       - From pipeline Enable : `GitHub hook trigger for GITScm polling`
-      - From Github : In the Repo go to : Setting -> Webhook -> Add Webhook
+      - From Github : In the Repo go to : Setting -> Webhook -> From Remote
     - **Create Jenkinsfile**:
       ```
       pipeline {
