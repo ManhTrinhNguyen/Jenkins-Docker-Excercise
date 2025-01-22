@@ -1,4 +1,4 @@
-pipelines {
+pipeline {
   agent any 
   tools {
     gradle 'gradle-8.13'
