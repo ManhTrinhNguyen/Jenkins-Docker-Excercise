@@ -25,7 +25,7 @@ pipeline {
         script {
           withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'USER', passwordVariable:'PWD')]){
             sh 'docker build -t 143.110.228.135:8083/java-app:1.0 .'
-            sh "echo ${PWD} | docker login -u ${USER} --password-stdin"
+            sh "echo ${PWD} | docker login -u ${USER} --password-stdin 143.110.228.135:8083"
             sh 'docker push 143.110.228.135:8083/java-app:2.0'
           }
         }
