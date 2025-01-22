@@ -196,6 +196,12 @@ volumes:
     - Docker client can not use Nexus endpoint to connect to the Repo bcs that endpoin is Nexus running itself . So I need to create a new port for docker-repo specificlly . 
     - Configure Realms : When I do Docker login I have a token of authentication from Nexus Docker-Repo for client . That token will be store on my local machine /.docker/config.json
 3. **Install Jenkins**
-  - Run Jenkins as a Docker container 
-  - To have docker CLI available in Jenkin I have to get in Jenkin container and install Docker with : `curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall`
+  - **Run Jenkins as a Docker container** 
+    - Run Jenkins Images : `docker run -d -p 8080:8080 -p 50000:50000 -v jenkins-home:/var/jenkins-home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins`
+      - **-d**: Detach mode
+      - **-p 8080:8080** : Jenkins run on port 8080
+      - **-v jenkins-home:/var/jenkins-home**: Create jenkins volumn to persist data 
+      - **-v /var/run/docker.sock:/var/run/docker.sock**: This will mount docker CLI to Jenkins container so docker CLI will available in jenkins container 
+      - **jenkins/jenkins**: Jenkins Image
+  - **Install docker inside Jenkins container** :  `curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall`
   
