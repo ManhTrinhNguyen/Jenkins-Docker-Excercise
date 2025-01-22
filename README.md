@@ -180,6 +180,14 @@ volumes:
 ### Push Docker Image to Nexus 
 1. **Rent a Server on Digital Ocean**
 2. **Install Nexus**
+  - Run Nexus as a Docker Container: 
+    - Create nexus volumn to persist data: `$ docker volume create --name nexus-data`
+    - Run Nexus: `$ docker run -d -p 8081:8081 -p 8083:8083 --name nexus -v nexus-data:/nexus-data sonatype/nexus3`
+      - **-d**: Detach mode
+      - **-p 8081:8081 -p 8083:8083** : Nexus run on port 8081. To connect with docker use port 8083 
+      - **--name** : Create a name
+      - **-v nexus-data:/nexus-data**: Create nexus volume . First part is name of nexus volume. Second part is where nexus data is stored in Nexus Container .
+      - **sonatype/nexus3**: Nexus Image
   - Create new docker-hosted Repo 
     - In oder to start pushing Docker Image to Nexus Repo I first have to login to Nexus using a Nexus User which have access to docker-hosted Repo
   - Create a new User for Docker Repo on nexus 
