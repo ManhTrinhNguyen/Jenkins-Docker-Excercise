@@ -34,7 +34,7 @@ pipeline {
     stage ('deploy java maven app') {
       steps {
         script {
-          echo 'Deploying Application ....'
+          echo 'Deploying Application ..'
         }
       }
     }
