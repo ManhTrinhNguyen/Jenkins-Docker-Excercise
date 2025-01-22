@@ -103,7 +103,7 @@ volumes:
   - `WORKDIR /home/app`
 
 ```
-FROM tomcat 
+FROM openjdk:17.0.2-jdk
 
 RUN mkdir -p /home/java-app
 
