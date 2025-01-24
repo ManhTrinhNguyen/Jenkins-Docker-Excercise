@@ -92,9 +92,10 @@ task preReleaseVersion(group: 'versioning', description: 'Make the version a pre
    }
 }
 
-task currentVersion(group: 'versioning', description: 'Print the current version') {
+task writeVersionToFile {
     doLast {
-        def currentVersion = loadVersion()
-        println "${currentVersion.getVersion()}"
+        def version = loadVersion().getVersion()
+        def versionFile = new File("version.txt")
+        versionFile.text = version
     }
 }

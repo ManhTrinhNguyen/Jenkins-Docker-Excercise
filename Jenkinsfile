@@ -13,7 +13,7 @@ pipeline {
         script {
           echo 'Incrementing Patch Version....'
           gradlePatchVersionUpdate()
-          def version = sh 'gradle currentVersion'
+          def version = readFile("version.txt").trim()
           env.IMAGE_NAME = version
         }
       }
