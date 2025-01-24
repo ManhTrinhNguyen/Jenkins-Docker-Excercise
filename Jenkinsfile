@@ -26,9 +26,9 @@ pipeline {
     stage('build and push Docker image'){
       steps {
         script {
-          buildDockerImage '143.110.228.135:8083/java-app:2.2'
+          buildDockerImage '143.110.228.135:8083/java-app:2.3'
           dockerLoginToNexus()
-          pushDockerImage '143.110.228.135:8083/java-app:2.2'
+          pushDockerImage '143.110.228.135:8083/java-app:2.3'
         }
       }
     }
