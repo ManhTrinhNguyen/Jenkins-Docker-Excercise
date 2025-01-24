@@ -12,7 +12,8 @@ pipeline {
       steps {
         script {
           echo 'Incrementing Patch Version....'
-          gradlePatchVersionUpdate()
+          sh 'gradle patchVersionUpdate'
+          sh 'gradle writeVersionToFile'
           def version = readFile("version.txt").trim()
           env.IMAGE_NAME = version
         }
