@@ -14,7 +14,7 @@ pipeline {
           echo 'Incrementing Patch Version....'
           gradlePatchVersionUpdate()
           def matcher = readFile('build.gradle') =~ /version\s*=\s*['"](.+?)['"]/
-          def version = matcher[0][1]
+          def version = matcher[0]
           env.IMAGE_NAME = version
         }
       }
