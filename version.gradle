@@ -95,6 +95,6 @@ task preReleaseVersion(group: 'versioning', description: 'Make the version a pre
 task currentVersion(group: 'versioning', description: 'Print the current version') {
     doLast {
         def currentVersion = loadVersion()
-        return "${currentVersion.getVersion()}"
+        println "${currentVersion.getVersion()}"
     }
 }
