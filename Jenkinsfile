@@ -8,6 +8,18 @@ pipeline {
   }
 
   stages {
+    stage ('Increment Version'){
+      steps {
+        script {
+          echo 'Incrementing Patch Version....'
+          gradlePatchVersionUpdate()
+          def matcher = readFile('gradle.build') =~ 'version'
+          def version = matcher[0][1]
+          env.IMAGE_NAME = version
+        }
+      }
+    }
+
     stage ('test java gradle app') {
       steps {
         script {
@@ -26,9 +38,9 @@ pipeline {
     stage('build and push Docker image'){
       steps {
         script {
-          buildDockerImage '143.110.228.135:8083/java-app:2.3'
+          buildDockerImage "143.110.228.135:8083/java-app:$IMAGE_NAME"
           dockerLoginToNexus()
-          pushDockerImage '143.110.228.135:8083/java-app:2.3'
+          pushDockerImage "143.110.228.135:8083/java-app:$IMAGE_NAME"
         }
       }
     }

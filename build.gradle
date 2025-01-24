@@ -7,7 +7,6 @@ plugins {
 apply from: 'version.gradle'
 
 version = loadVersion().getVersion()
-
 group 'com.example'
 
 
