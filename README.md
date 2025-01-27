@@ -256,6 +256,18 @@ volumes:
           }
         }
       }
+    ```
 
-```
+## Dynamic Increment Application version in Jenkins Pipeline 
+1. **Dynamic Increment Gradle Application** : https://theekshanawj.medium.com/gradle-automate-application-version-management-with-gradle-4b97e1df84a3
+2. **Create Increment version Stage on the top of every stage** : 
+  1. **Increment version (major, minor, or patch)**: `sh 'gradle patchVersionUpdate'`
+  2. **Write version to version.txt file**: `sh 'gradle writeVersionToFile'`
+  3. **Readfile from version.txt**: `def version = readFile("version.txt").trim()`
+3. **Make Jenkins commit the Increment**: 
+  1. **Add the commit stage at the last**: 
+  2. **Need access credentials to connect to Git**  
+  3. **Set the Remote URL** : `sh "git remote set-url origin https://${USER}:${PASS}@github.com/ManhTrinhNguyen/Jenkins-Docker-Excercise.git"`
+  4. **Add, Commit and Push**: `sh 'git add .' | sh 'git commit -m "ci: version bump"' | sh 'git push origin HEAD:Using-Shared-Library'` 
+`
 
